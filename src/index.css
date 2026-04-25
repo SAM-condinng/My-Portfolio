@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #050d1a;
+    color: #f1f5f9;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(51, 65, 85, 0.6);
+  }
+  .glass-hover:hover {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+  .glow-blue { box-shadow: 0 0 30px rgba(59, 130, 246, 0.25); }
+  .glow-blue-lg { box-shadow: 0 0 60px rgba(59, 130, 246, 0.35); }
+  .text-gradient {
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .grid-bg {
+    background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: #0a1628; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+}
+
+/* Skill bar animation */
+.skill-bar { transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+/* Page fade-in */
+.page-enter { animation: fadeUp 0.5s ease-out; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating particles */
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
+
+/* Nav link underline effect */
+.nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #a78bfa);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+/* Admin sidebar */
+.admin-sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
